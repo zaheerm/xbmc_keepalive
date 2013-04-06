@@ -22,7 +22,7 @@ def get_status(address, username, password):
 
 def play_file(address, username, password, file):
     url = "http://%s/jsonrpc" % (address,)
-    play_request = json.dumps({"jsonrpc": "2.0", "method": "Player.Open", "params": [ "item": { "path": file } ], "id": 1 })
+    play_request = json.dumps({"jsonrpc": "2.0", "method": "Player.Open", "params": { "item": { "path": file } }, "id": 1 })
     result = requests.post(url, data=play_request, headers={'content-type': 'application/json'}, auth=(username, password))
 
 def main():
