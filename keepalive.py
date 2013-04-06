@@ -32,8 +32,11 @@ def main():
     files = os.getenv("XBMC_FILE").split(':')
     while True:
         for hostname, username, password, filename in zip(hostnames, usernames, passwords, files):
-            if not get_status(hostname, username, password):
-                play_file(hostname, username, password, filename)
+            try:
+                if not get_status(hostname, username, password):
+                    play_file(hostname, username, password, filename)
+            except Exception as exc:
+                print("Failed to connect to %s: %s" % (hostname, exc))
         time.sleep(60)
 
 if __name__ == '__main__':
