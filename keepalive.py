@@ -34,6 +34,7 @@ def main():
         for hostname, username, password, filename in zip(hostnames, usernames, passwords, files):
             try:
                 if not get_status(hostname, username, password):
+                    print("%s not playing so telling it to play" % (hostname,))
                     play_file(hostname, username, password, filename)
             except Exception as exc:
                 print("Failed to connect to %s: %s" % (hostname, exc))
